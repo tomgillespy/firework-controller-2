@@ -2,16 +2,21 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Electron boilerplate</title>
+		<title>Firework Controller</title>
 		<link rel="stylesheet" href="index.css">
 	</head>
 	<body>
 		<div class="container">
 			<header>
-				<h1>Electron boilerplate</h1>
+				<h1 data-bind="text: tobs">Electron boilerplate</h1>
+				<input type="text" data-bind="textInput: tobs" />
+				<h2 data-bind="visible: udpListen">UDP Socket Listening</h2>
 			</header>
 			<section class="main"></section>
 			<footer></footer>
 		</div>
+		<script>
+		  require('./app/app.js');
+		</script>
 	</body>
 </html>
