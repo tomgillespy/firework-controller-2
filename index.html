@@ -3,17 +3,19 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Firework Controller</title>
-		<link rel="stylesheet" href="index.css">
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+		<link rel="stylesheet" href="metro-ui/css/metro.css" />
+		<script src="jquery.min.js"></script>
+		<script src="metro-ui/js/metro.js"></script>
+		<script>if (window.module) module = window.module;</script>
 	</head>
-	<body>
-		<div class="container">
-			<header>
-				<h1 data-bind="text: tobs">Electron boilerplate</h1>
-				<input type="text" data-bind="textInput: tobs" />
-				<h2 data-bind="visible: udpListen">UDP Socket Listening</h2>
-			</header>
-			<section class="main"></section>
-			<footer></footer>
+	<body class="bg-black fg-white">
+		<div class="grid">
+			<div class="row cells1">
+				<div class="cell">
+					<h1>Node Name <small>8 Channels</small>
+				</div>
+			</div>
 		</div>
 		<script>
 		  require('./app/app.js');
