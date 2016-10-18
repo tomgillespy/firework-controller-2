@@ -10,14 +10,60 @@
 		<script>if (window.module) module = window.module;</script>
 	</head>
 	<body class="bg-black fg-white">
-		<div class="grid">
+		<div class="grid" data-bind="visible: nodes().length == 0">
 			<div class="row cells1">
-				<div class="cell">
-					<h1>Node Name <small>8 Channels</small>
+				<div class="cell padding20">
+					<div class="panel">
+					    <div class="heading">
+					        <span class="title">No Devices Connected</span>
+					    </div>
+					    <div class="content padding10">
+					        Make sure you are on the same network, and that the devices are in autodiscovery mode.<br />
+									If the device cannot be found, enter its address.<br />
+									<div class="input-control modern text">
+									    <input type="text">
+									    <span class="label">Address</span>
+									    <span class="informer">Enter IP and press enter</span>
+									    <span class="placeholder">0.0.0.0</span>
+									</div>
+					    </div>
+					</div>
 				</div>
 			</div>
 		</div>
+		<div class="grid" data-bind="foreach: nodes">
+			<div class="row cells1">
+				<div class="cell">
+					<h1><span data-bind="text: nodename">Node Name</span> <small><span data-bind="text: channels().length">0</span> Channels - <span class="fg-red" data-bind="visible: (isArmed() == false)">Unarmed</span><span class="fg-green" data-bind="visible: (isArmed() == true)">Ready</span></small>
+				</div>
+			</div>
+			<div class="row padding10" data-bind="css: gridclass, foreach: channels">
+				<div class="cell padding10" data-bind="css: colourclass">
+					<h1><span data-bind="text: address"></span></h1>
+				</div>
+			</div>
+		</div>
+
+		<div data-role="dialog" id="main-dialog" class="padding20 dialog alert" data-close-button="true" data-type="alert" style="width: auto; height: auto; visibility: hidden;">
+	    <h1>Simple dialog</h1>
+	    <p>
+	        Dialog :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style
+	    </p>
+		  <span class="dialog-close-button"></span>
+		</div>
 		<script>
+			function showDialog(title, text, type) {
+				  var dlg = $('#main-dialog');
+					dlg.removeClass('success');
+					dlg.removeClass('warning');
+					dlg.removeClass('alert');
+					dlg.removeClass('info');
+					dlg.addClass(type);
+					dlg.find('h1').html(title);
+					dlg.find('p').html(text);
+			    var dialog = $('#main-dialog').data('dialog');
+			    dialog.open();
+			}
 		  require('./app/app.js');
 		</script>
 	</body>
