@@ -16,6 +16,17 @@ var fworkchannel = function(address, parent) {
       return 'bg-blue';
     }
   });
+  self.firechannel = function() {
+    if (self.parent.isArmed() == false) {
+      showDialog('Cannot Fire', self.parent.nodename() + ' is not armed.', 'info');
+      return;
+    }
+    if (self.connected() == false) {
+      showDialog('Cannot Fire', 'No igniter detected.', 'info');
+      return;
+    }
+    self.parent.ws_connection.send(JSON.stringify({event: 'fire', channel: self.address()}));
+  }
 }
 
 var fworknode = function(address, nodename, parent) {
